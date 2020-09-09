@@ -76,7 +76,10 @@
             alert("you won!!");
             playAgain();
         } else if (card > user && card <= 21) {
-            alert("you lost");
+            alert("you lost!!");
+            playAgain();
+        } else if (card > 21 && user > 21){
+            alert("nobody won!!");
             playAgain();
         }
     }
