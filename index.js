@@ -12,6 +12,8 @@
     let cardNumberDealer;
 
     let startButton = document.getElementById("start");
+    let hitButton = document.getElementById("hit");
+    let standButton = document.getElementById("stand");
 
     startButton.addEventListener("click", function () {
         start();
@@ -65,8 +67,8 @@
     }
 
     function cardReset() {
-        for (let x = 0; x < cardImage.length; x++){
-            cardImage[x].setAttribute("src", "images/red_back.png")
+        for (let x = 0; x < cardImage.length; x++) {
+            cardImage[x].setAttribute("src", "images/black_border.png")
         }
     }
 
@@ -96,7 +98,7 @@
         console.log("start pc " + card);
         user += newCard.value;
         console.log("start user " + user);
-        askCard();
+        //askCard();
     }
 
 
@@ -108,10 +110,24 @@
             console.log("computer " + card);
             dealerCard();
         }
-
     }
 
-    function askCard() {
+    hitButton.addEventListener('click', function () {
+        topCard();
+        setCardsPlayer();
+        user += newCard.value;
+        console.log("user " + user);
+        if (user > 21) {
+            alert("you are busted, GAME OVER!!");
+        }
+    })
+
+    standButton.addEventListener("click", function (){
+        dealerCard();
+        winner();
+    })
+
+    /*function askCard() {
         let question = window.confirm("Do you want to draw another card?");
         if (question == true) {
             topCard();
@@ -126,11 +142,10 @@
         } else if (user > 21) {
             alert("you are busted, GAME OVER!!");
         } else {
-
             dealerCard();
             winner();
         }
-    }
+    }*/
 
     function winner() {
         if (card < user && card <= 21) {
