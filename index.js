@@ -7,7 +7,13 @@
 
     function randomCard() {
         random = Math.floor(Math.random() * (13 - 1)) + 1;
-        //console.log(random);
+        console.log("original" + random);
+        if (random == 11 || random == 12 || random == 13){
+            random = 10;
+        } else if (random == 1){
+            random = 11;
+        }
+        console.log(random);
     }
 
     function start() {
