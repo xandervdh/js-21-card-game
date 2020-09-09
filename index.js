@@ -81,6 +81,9 @@
         } else if (card > 21 && user > 21){
             alert("nobody won!!");
             playAgain();
+        } else if (card == user){
+            alert("draw, you lose!!");
+            playAgain();
         }
     }
 
