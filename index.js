@@ -7,20 +7,24 @@
 
     function randomCard() {
         random = Math.floor(Math.random() * (13 - 1)) + 1;
-        console.log("original" + random);
         if (random == 11 || random == 12 || random == 13){
             random = 10;
         } else if (random == 1){
             random = 11;
         }
-        console.log(random);
     }
 
     function start() {
+        user = 0;
+        random = 0;
+        card = 0;
         randomCard();
         user += random;
-        console.log("user start " + random);
-        alert("your current card is " + random);
+        console.log(random);
+        randomCard();
+        console.log("second " + random);
+        user += random;
+        alert("the total of your 2 starting cards is " + user);
         askCard();
     }
 
@@ -28,8 +32,8 @@
     function dealerCard() {
         if (card < 15) {
             randomCard();
-            console.log("new card " + random)
             card += random;
+            console.log("computer card " + random);
             console.log("computer " + card);
             dealerCard();
         }
@@ -49,9 +53,18 @@
             } else {
                 askCard();
             }
-        } else {
+        } else if (user >21){
+            alert("you are busted, GAME OVER!!");
+            playAgain();
+        }
+        else {
+
             randomCard();
             card += random;
+            console.log("computer " + random);
+            randomCard();
+            card += random;
+            console.log("second computer " + random)
             console.log("computer start " + card);
             dealerCard();
             winner();
