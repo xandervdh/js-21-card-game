@@ -39,6 +39,6 @@ Thumbs.db
 
 .idea/
 node_modules/
-index.cscc
+index.scss
 index.css.map
 package-lock.json

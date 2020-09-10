@@ -60,12 +60,20 @@
     }
 
     function setCardsPlayer() {
+        topCard();
         cardImage[cardNumberPlayer].setAttribute("src", newCard.image);
+        cardImage[cardNumberPlayer].classList.toggle("flip");
+        user += newCard.value;
+        addPlayerCounter();
         cardNumberPlayer++;
     }
 
     function setCardsDealer() {
+        topCard();
         cardImage[cardNumberDealer].setAttribute("src", newCard.image);
+        cardImage[cardNumberDealer].classList.toggle("flip");
+        card += newCard.value;
+        addDealerCounter();
         cardNumberDealer++;
     }
 
@@ -94,22 +102,10 @@
         createDeck();
         shuffle(deck);
         console.log(deck);
-        topCard();
-        setCardsPlayer();
-        user += newCard.value;
-        addPlayerCounter();
-        topCard();
-        setCardsDealer()
-        card += newCard.value;
-        addDealerCounter();
-        topCard();
-        setCardsPlayer();
-        user += newCard.value;
-        addPlayerCounter();
-        topCard();
-        setCardsDealer();
-        card += newCard.value;
-        addDealerCounter();
+        setTimeout(function (){ setCardsPlayer()}, 1000);
+        setTimeout(function (){ setCardsDealer()}, 2000);
+        setTimeout(function (){ setCardsPlayer()}, 3000);
+        setTimeout(function (){ setCardsDealer()}, 4000);
         console.log("start pc " + card);
         console.log("start user " + user);
     }
@@ -126,6 +122,12 @@
         }
     }
 
+    function resetAnimation() {
+        for (let x = 0; x < cardImage.length; x++) {
+            cardImage[x].classList.remove("flip");
+        }
+    }
+
     hitButton.addEventListener('click', function () {
         topCard();
         setCardsPlayer();
@@ -135,6 +137,7 @@
         if (user > 21) {
             hitButton.disabled = true;
             standButton.disabled = true;
+            resetAnimation();
             alert("you are busted, GAME OVER!!");
         }
     })
@@ -143,6 +146,7 @@
         hitButton.disabled = true;
         standButton.disabled = true;
         dealerCard();
+        resetAnimation();
         winner();
     })
 

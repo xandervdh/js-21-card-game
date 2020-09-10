@@ -25,4 +25,19 @@ body {
   border-radius: 15px;
 }
 
+@keyframes flipInY {
+  0% {
+    transform: perspective(400px) rotateY(180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+.flip {
+  animation-name: flipInY;
+  animation-duration: 2s;
+}
+
 /*# sourceMappingURL=index.css.map */
