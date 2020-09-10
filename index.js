@@ -19,6 +19,7 @@
     startButton.addEventListener("click", function () {
         hitButton.disabled = false;
         standButton.disabled = false;
+        startButton.disabled = true;
         start();
     })
 
@@ -98,14 +99,15 @@
         deck = [];
         cardNumberPlayer = 5;
         cardNumberDealer = 0;
+        resetAnimation();
         cardReset();
         createDeck();
         shuffle(deck);
         console.log(deck);
-        setTimeout(function (){ setCardsPlayer()}, 1000);
-        setTimeout(function (){ setCardsDealer()}, 2000);
-        setTimeout(function (){ setCardsPlayer()}, 3000);
-        setTimeout(function (){ setCardsDealer()}, 4000);
+        setCardsPlayer();
+        setTimeout(function (){ setCardsDealer()}, 1000);
+        setTimeout(function (){ setCardsPlayer()}, 2000);
+        setTimeout(function (){ setCardsDealer()}, 3000);
         console.log("start pc " + card);
         console.log("start user " + user);
     }
@@ -113,10 +115,7 @@
 
     function dealerCard() {
         if (card < 15) {
-            topCard();
             setCardsDealer();
-            card += newCard.value;
-            addDealerCounter();
             console.log("computer " + card);
             dealerCard();
         }
@@ -129,14 +128,12 @@
     }
 
     hitButton.addEventListener('click', function () {
-        topCard();
         setCardsPlayer();
-        user += newCard.value;
-        addPlayerCounter();
         console.log("user " + user);
         if (user > 21) {
             hitButton.disabled = true;
             standButton.disabled = true;
+            startButton.disabled = false;
             resetAnimation();
             alert("you are busted, GAME OVER!!");
         }
@@ -145,9 +142,10 @@
     standButton.addEventListener("click", function (){
         hitButton.disabled = true;
         standButton.disabled = true;
+        startButton.disabled = false;
         dealerCard();
-        resetAnimation();
         winner();
+        resetAnimation();
     })
 
     function winner() {
