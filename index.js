@@ -9,6 +9,7 @@
     let cardImage;
     let cardNumberPlayer;
     let cardNumberDealer;
+    let dSecondCard;
     let dCounter = document.getElementById("dCount");
     let pCounter = document.getElementById("pCount");
 
@@ -78,6 +79,13 @@
         cardNumberDealer++;
     }
 
+    function secondCardDealer() {
+        topCard();
+        cardImage[1].setAttribute("src", "images/red_back.png");
+        cardImage[1].classList.toggle("flip");
+        dSecondCard = newCard;
+    }
+
     function cardReset() {
         for (let x = 0; x < cardImage.length; x++) {
             cardImage[x].setAttribute("src", "images/black_border.png")
@@ -99,6 +107,7 @@
         deck = [];
         cardNumberPlayer = 5;
         cardNumberDealer = 0;
+        dSecondCard = 1;
         resetAnimation();
         cardReset();
         createDeck();
@@ -107,7 +116,7 @@
         setCardsPlayer();
         setTimeout(function (){ setCardsDealer()}, 1000);
         setTimeout(function (){ setCardsPlayer()}, 2000);
-        setTimeout(function (){ setCardsDealer()}, 3000);
+        setTimeout(function (){ secondCardDealer()}, 3000);
         console.log("start pc " + card);
         console.log("start user " + user);
     }
@@ -117,7 +126,7 @@
         if (card < 15) {
             setCardsDealer();
             console.log("computer " + card);
-            dealerCard();
+            setTimeout(function (){dealerCard()}, 1000);
         }
     }
 
@@ -143,9 +152,18 @@
         hitButton.disabled = true;
         standButton.disabled = true;
         startButton.disabled = false;
-        dealerCard();
-        winner();
-        resetAnimation();
+        cardImage[1].classList.remove("flip");
+        setTimeout(function (){
+            cardImage[1].setAttribute("src", dSecondCard.image);
+            cardImage[1].classList.toggle("flip");
+        }, 100)
+        card += dSecondCard.value;
+        addDealerCounter()
+        cardNumberDealer = 2;
+        setTimeout(function (){dealerCard()}, 1000);
+        setTimeout(function (){winner()}, 2000);
+        setTimeout(function (){resetAnimation()}, 2000);
+        //resetAnimation();
     })
 
     function winner() {

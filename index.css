@@ -25,7 +25,7 @@ body {
   border-radius: 15px;
 }
 
-/*@keyframes flipInY {
+@keyframes flipInY {
   0% {
     transform: perspective(400px) rotateY(180deg);
     opacity: 0;
@@ -33,14 +33,6 @@ body {
   100% {
     transform: perspective(400px) rotateY(0deg);
     opacity: 1;
-  }
-}*/
-@keyframes flipInY {
-  0% {
-    transform: translateY(-1000px);
-  }
-  100% {
-    transform: translateY(0px);
   }
 }
 .flip {
