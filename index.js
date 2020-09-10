@@ -98,7 +98,6 @@
         console.log("start pc " + card);
         user += newCard.value;
         console.log("start user " + user);
-        //askCard();
     }
 
 
@@ -126,26 +125,6 @@
         dealerCard();
         winner();
     })
-
-    /*function askCard() {
-        let question = window.confirm("Do you want to draw another card?");
-        if (question == true) {
-            topCard();
-            setCardsPlayer();
-            user += newCard.value;
-            console.log("user " + user);
-            if (user > 21) {
-                alert("you are busted, GAME OVER!!");
-            } else {
-                askCard();
-            }
-        } else if (user > 21) {
-            alert("you are busted, GAME OVER!!");
-        } else {
-            dealerCard();
-            winner();
-        }
-    }*/
 
     function winner() {
         if (card < user && card <= 21) {
