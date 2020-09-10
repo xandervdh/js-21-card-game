@@ -1,8 +1,7 @@
 (() => {
 
     let user = 0;
-    let random = 0;
-    let card = 0;
+        let card = 0;
     let deck = [];
     let newCard;
     let suits = ["clubs", "diamonds", "hearts", "spades"];
@@ -10,12 +9,16 @@
     let cardImage;
     let cardNumberPlayer;
     let cardNumberDealer;
+    let dCounter = document.getElementById("dCount");
+    let pCounter = document.getElementById("pCount");
 
     let startButton = document.getElementById("start");
     let hitButton = document.getElementById("hit");
     let standButton = document.getElementById("stand");
 
     startButton.addEventListener("click", function () {
+        hitButton.disabled = false;
+        standButton.disabled = false;
         start();
     })
 
@@ -72,10 +75,17 @@
         }
     }
 
+    function addDealerCounter() {
+        dCounter.innerHTML = card;
+    }
+
+    function addPlayerCounter() {
+        pCounter.innerHTML = user;
+    }
+
     function start() {
         cardImage = document.getElementsByClassName("cards");
         user = 0;
-        random = 0;
         card = 0;
         deck = [];
         cardNumberPlayer = 5;
@@ -87,16 +97,20 @@
         topCard();
         setCardsPlayer();
         user += newCard.value;
+        addPlayerCounter();
         topCard();
         setCardsDealer()
         card += newCard.value;
+        addDealerCounter();
         topCard();
         setCardsPlayer();
-        topCard();
-        setCardsDealer()
-        card += newCard.value;
-        console.log("start pc " + card);
         user += newCard.value;
+        addPlayerCounter();
+        topCard();
+        setCardsDealer();
+        card += newCard.value;
+        addDealerCounter();
+        console.log("start pc " + card);
         console.log("start user " + user);
     }
 
@@ -106,6 +120,7 @@
             topCard();
             setCardsDealer();
             card += newCard.value;
+            addDealerCounter();
             console.log("computer " + card);
             dealerCard();
         }
@@ -115,13 +130,18 @@
         topCard();
         setCardsPlayer();
         user += newCard.value;
+        addPlayerCounter();
         console.log("user " + user);
         if (user > 21) {
+            hitButton.disabled = true;
+            standButton.disabled = true;
             alert("you are busted, GAME OVER!!");
         }
     })
 
     standButton.addEventListener("click", function (){
+        hitButton.disabled = true;
+        standButton.disabled = true;
         dealerCard();
         winner();
     })
@@ -138,13 +158,5 @@
         } else if (card > 21 && card > user)
             alert("you won!!");
     }
-
-    function playAgain() {
-        let again = confirm("want to play again?");
-        if (again == true) {
-            start();
-        }
-    }
-
 
 })();
